@@ -23,7 +23,6 @@
 -behaviour(application).
 -include("lager.hrl").
 -ifdef(TEST).
--compile([export_all]).
 -include_lib("eunit/include/eunit.hrl").
 -endif.
 -export([start/0,
@@ -274,7 +273,8 @@ boot_sink(Sink, false) ->
 stop(Handlers) ->
     lists:foreach(fun(Handler) ->
           error_logger:add_report_handler(Handler)
-      end, Handlers).
+      end, Handlers),
+    lager_config:cleanup().
 
 expand_handlers([]) ->
     [];

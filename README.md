@@ -54,8 +54,8 @@ We review PRs and issues at least once a month as described below.
 OTP Support Policy
 ------------------
 The lager maintainers intend to support the past three OTP releases from
-current on the main 3.x branch of the project. As of December 2018 that includes
-21, 20, 19.
+current on the main 3.x branch of the project. As of August 2019 that includes
+22, 21 20
 
 Lager may or may not run on older OTP releases but it will only be guaranteed
 tested on the previous three OTP releases. If you need a version of lager
@@ -1140,6 +1140,17 @@ Example Usage:
 
 3.x Changelog
 -------------
+
+3.8.0 - 9 August 2019
+
+    * Breaking API change: Modify the `lager_rotator_behaviour` to pass in a
+      file's creation time to `ensure_logfile/5` to be used to determine if
+      file has changed on systems where inodes are not available (i.e.
+      `win32`). The return value from `create_logfile/2`, `open_logfile/2` and
+      `ensure_logfile/5` now requires ctime to be returned (#509)
+    * Bugfix: ensure log file rotation works on `win32` (#509)
+    * Bugfix: ensure test suite passes on `win32` (#509)
+    * Bugfix: ensure file paths with Unicode are formatted properly (#510)
 
 3.7.0 - 24 May 2019
 
